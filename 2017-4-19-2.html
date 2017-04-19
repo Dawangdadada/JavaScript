@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>range</title>
+</head>
+<body>
+<input id="in1"  type="text"  />
+<input  id="in2" type="range" min="0"  />
+<p>运行<span id="span"></span>年</p>
+<script type="text/javascript">
+var pn=document.getElementById("in2");
+document.getElementById("in1").onchange=function(){
+	pn.max=this.value;
+}
+pn.oninput=function(){
+	document.getElementById("span").innerHTML=this.value;
+}
+</script>	
+</body>
+</html>
