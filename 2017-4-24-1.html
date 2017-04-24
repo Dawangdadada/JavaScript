@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js下拉菜单</title>
+	<style type="text/css">
+	*{ margin:0px; padding:0px;}
+body{ font-family:Verdana, Geneva, sans-serif; font-size:14px;}
+#nav{
+	width: 600px;
+	height: 40px;
+	background-color: #eee;
+	margin: 0 auto;
+}
+ul{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+	color:#000;
+	display: block;
+	background-color: #eee;
+}
+a:hover{
+	 color:#F00; 
+	 background-color:#666;
+}
+ul li{
+	float: left;
+	width: 100px;
+	line-height: 40px;
+	text-align: center;
+	position: relative;
+}
+ul li ul{
+	float:none;
+	position: absolute;/*脱离正常文档流*/
+	display: none;
+}
+ul li ul li{
+	margin:2px 0;
+}
+	</style>
+	<script type="text/javascript">
+	function displaySubMenu(li){
+		var subMenu=li.getElementsByTagName("ul")[0];
+		subMenu.style.display='block';
+	}
+	function hideSubMenu(li){
+		var subMenu=li.getElementsByTagName("ul")[0];
+			subMenu.style.display='none';
+	}
+	</script>
+</head>
+<body>
+<div id="nav">
+<ul>
+  <li><a href="#">首页</a></li>
+  <li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#">课程大厅</a>
+     <ul>
+         <li><a href="#">JavaScript</a></li>
+         <li><a href="#">Html/CSS</a></li>
+     </ul>  
+  </li>
+  <li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#">学习中心</a>
+      <ul>
+         <li><a href="#">视频学习</a></li>
+         <li><a href="#">实例练习</a></li>
+         <li><a href="#">问与答</a></li>
+     </ul>  
+  
+  </li>
+  <li><a href="#">经典案例</a></li>
+  <li><a href="#">关于我们</a></li>
+  
+</ul>
+
+</div>
+<p>测试文字</p>	
+</body>
+</html>
