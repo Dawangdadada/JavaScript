@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>窗口与元素</title>
+	<style type="text/css">
+	div{
+		height: 1500px;
+		width: 100px;
+		margin: 0 auto;
+		border: 1px solid red;
+		overflow: auto;
+		padding: 10px;
+	}
+</style>
+</head>
+<body>
+	<div id="div">
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+    啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	啦啦啦拉拉拉拉拉
+	</div>
+	<script type="text/javascript">
+	//查询窗口滚动条的位置
+	function getScrollOffsets(w){
+		w=w||window;
+		//除了IE8及更早的版本之外，其他的浏览器都能用
+		if (w.pageXOffset!=null) 
+			return w.pageYOffset;
+        //对标准模式下的IE(或任何浏览器)
+           var d=w.document;
+           if(document.compatMode=='CSS1Compat')
+           	return  d.documentElement.scrollTop;       
+         //对怪异模式下的浏览器
+             return d.body.scrollTop
+     }
+     console.log(getScrollOffsets());
+     //查询窗口的尺寸
+        function getViewportSize(w){
+        	w=w||window;
+        	//除了IE8及更早的版本,其他的浏览器都可以用
+        	if(w.innerHeight!=null)
+        		return w.innerHeight;
+        	//对标准模式下的IE(或任何浏览器)
+        	var d=w.document;
+        	if(document.compatMode=='CSS1Compat')
+        		return d.documentElement.clientHeight;
+        	//对怪异下的浏览器
+        	return d.body.clientHeight;
+        }
+       console.log(getViewportSize());
+       //查询元素的几何尺寸
+         var div=document.getElementById("div");
+         var box=div.getBoundingClientRect();//获得在视口坐标中的位置
+         var w=box.width||(box.right-box.left);
+         var h=box.height||(box.bottom-box.top);
+         console.log(box.right);
+         console.log(box.left);
+         console.log(w+','+h);
+         console.log(div.offsetWidth);//122
+         console.log(div.clientWidth);//103
+         console.log(div.scrollWidth);//103
+         console.log(div.offsetHeight);//1522
+         console.log(div.clientHeight);//1520
+         console.log(div.scrollHeight);//1931
+         //getBoundingClientRect()返回的坐标包括元素的边框和内边距
+   //每个HTML都有以下这些属性
+   /*
+   offsetWidth 
+   //包括元素的边框，内边距和内容                                         
+   offsetHeight                                
+   offsetLeft //文档坐标                          
+   offsetTop                                     
+   offsetParent
+        
+  clientWidth  //包括内容和内边距，不包括边框，有滚动条也不包括滚动条
+  clientHeight 
+  clientLeft
+  clientTop
+
+  scrollWidth   
+  scrollHeight
+  scrollLeft  //内容加上内边距加上任何溢出内容的尺寸
+  scrollTop*/
+	</script>	
+</body>
+</html>
