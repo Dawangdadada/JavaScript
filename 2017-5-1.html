@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>Javascript 返回顶部</title>
+	<style type="text/css">
+		#btn {width:40px; height:40px; position:fixed; right:65px; bottom:10px; display:none; background:url(images/top_bg.png) no-repeat left top;}
+		#btn:hover {background:url(images/top_bg.png) no-repeat 0 -39px;}
+		.bg {width:1190px; margin:0 auto;}
+	</style>
+	
+</head>
+<body>
+	<a href="javascript:;" id="btn" title="回到顶部"></a>
+	<div class="bg">
+		<img src="images/tb_bg.jpg" alt=""/>
+	</div>
+	<script type="text/javascript">
+	window.onload=function(){
+		//窗口可视区域的高度;
+		var clientHeight=window.innerHeight;
+		var timer=null;
+		var btn=document.getElementById("btn");
+		var isTop=true;
+		//滚动条滚动时触发
+		window.onscroll=function(){
+			var osTop=document.documentElement.scrollTop||document.body.scrollTop;
+			if(osTop>=clientHeight)
+				btn.style.display='block';
+			else
+				btn.style.display='none';
+			if(!isTop)
+			{
+				clearInterval(timer);
+				console.log("我被滚动了");
+			}
+			isTop=false;//这一句话为什么一定要放下面呢
+		};		
+		btn.onclick=function(){
+			timer=setInterval(function() { 
+				var osTop=document.documentElement.scrollTop||document.body.scrollTop;
+				var osspeed=Math.floor(-osTop/6);//向下取整
+				document.documentElement.scrollTop=document.body.scrollTop=osTop+osspeed/6;
+				//为什么要取整
+				isTop=true;//这一句非常重要,加了这一句始终为true,不清楚定时器
+				if(osTop==0)
+					clearInterval(timer);
+			},30);
+			
+
+
+
+
+		}
+
+	}
+	
+
+
+
+	</script>
+</body>
+</html>
