@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas倒计时</title>
+</head>
+<body>
+	<canvas id="canvas" style="border:1px solid red">	
+	</canvas>
+  <script src="digit.js"></script>
+	<script type="text/javascript">
+  var WIDTH=1024;
+  var HEIGHT=768;
+  var RADIUS=8;
+  const endTime=new Date(2017,4,5,3,55);
+  var curShowTimeSenconds=0;
+	var canvas=document.getElementById('canvas');
+	//canvas.width=1024;
+	//canvas.height=768;
+	var context=canvas.getContext('2d');
+  canvas.width=WIDTH;
+  canvas.height=HEIGHT;
+  var MARGIN_TOP=30;
+  var MARGIN_LEFT=60;
+     //使用context进行绘制
+     // draw a line
+    /* context.beginPath();
+     context.moveTo(100,100);
+     context.lineTo(700,700);
+     context.lineTo(100,700);
+     context.lineTo(100,100);
+     context.closePath();会自动将路径封闭起来
+     context.fillStyle="rgb(2,100,30)";
+     context.fill();//绘制填充色
+     context.lineWidth=5;
+     context.strokeStyle="red";
+     context.stroke();//绘制
+      context.beginPath();
+      context.moveTo(100,200);
+      context.lineTo(700,700);
+      context.closePath();
+      context.strokeStyle='black';
+      context.stroke();//绘制边框*/
+    //important!canvas是基于状态进行绘图的
+    //绘制7巧版
+    //draw a arc 
+    /*context.arc(
+      centerx,centery, radius,
+      startingAngle,endingAngle
+       anticlockwise=false//默认为顺时针
+
+      )*/
+     /*context.beginPath();
+    context.arc(10,10,8,0,2*Math.PI,false);
+    context.closePath();
+    context.strokeStyle='blue';
+    context.stroke();
+    context.beginPath();
+    context.arc(20,20,10,0,Math.PI,true);
+    //context.closePath();
+    context.strokeStyle='yellow';
+    context.stroke();*/
+    curShowTimeSenconds=getCurShowTimeSeconds();
+    function getCurShowTimeSeconds(){
+      var curTime=new Date();
+      var ret=endTime.getTime()-curTime.getTime();
+      ret=Math.round(ret/1000)//转化为秒,并且Math.round():四舍五入
+      return ret>0?ret:0;
+    }
+    render(context);
+    function render(cxt){
+      var hours=parseInt(curShowTimeSenconds/3600);
+      var minutes=parseInt(curShowTimeSenconds-hours*3600)/60;
+      var seconds=parseInt(curShowTimeSenconds%60);
+      renderDigit(MARGIN_LEFT,MARGIN_TOP,parseInt( hours/10),cxt);
+      renderDigit(MARGIN_LEFT+15*(RADIUS+1),MARGIN_TOP,parseInt( hours%10),cxt);
+     renderDigit(MARGIN_LEFT+30*(RADIUS+1),MARGIN_TOP,10,cxt);
+      renderDigit(MARGIN_LEFT+39*(RADIUS+1),MARGIN_TOP,parseInt( minutes/10),cxt);
+      renderDigit(MARGIN_LEFT+54*(RADIUS+1),MARGIN_TOP,parseInt( minutes%10),cxt);
+     renderDigit(MARGIN_LEFT+69*(RADIUS+1),MARGIN_TOP,10,cxt);
+      renderDigit(MARGIN_LEFT+78*(RADIUS+1),MARGIN_TOP,parseInt( seconds/10),cxt);
+      renderDigit(MARGIN_LEFT+93*(RADIUS+1),MARGIN_TOP,parseInt( seconds%10),cxt);
+    }
+    function renderDigit(x,y,num,cxt){
+      cxt.fillStyle='rgb(0,102,153)';
+      for(var i=0;i<digit[num].length;i++)
+        for(var j=0;j<digit[num][i].length;j++)
+        {
+          if(digit[num][i][j]==1){
+            cxt.beginPath();
+            cxt.arc(x+RADIUS+1+j*2*(RADIUS+1),y+RADIUS+i*2*(RADIUS+1),RADIUS,0,2*Math.PI);
+            cxt.closePath();
+            cxt.fill();
+          }
+
+
+        }
+
+
+
+    }
+	</script>  
+</body>
+</html>
