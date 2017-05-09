@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css空心三角形</title>
+	<style type="text/css">
+#talkbubble {   
+width: 120px;   
+height: 80px;   
+position: relative;   
+-moz-border-radius: 10px;   
+-webkit-border-radius: 10px;   
+border-radius: 10px;   
+border: 1px #808080 solid;   
+background-color: #fff;   
+}   
+  
+#talkbubble:before {   /*产生实心的三角形*/
+content: " ";   
+position: absolute;   
+top: 100%;   
+left: 50px;   
+width: 0;   
+height: 0;   
+border-left: 15px solid transparent;   
+border-top: 15px solid #808080;   
+border-right: 15px solid transparent;   
+}   
+  
+.inlayer:after {   /* 产生的是实心的白色的三角形，将其覆盖*/
+content: " ";   
+position: absolute;   
+top: 100%;   
+left: 52px;   
+width: 0;   
+height: 0;   
+border-left: 14px solid transparent;  /*border四个方向的值只是控制角度*/ 
+border-top: 14px solid #fff;   
+border-right: 14px solid transparent;   
+}   
+  
+#talkbubble:hover {   
+background-color: #ff0000;   
+}   
+  
+.inlayer:hover:after {   
+width: 0;   
+height: 0;   
+border-left: 14px solid transparent;   
+border-top: 14px solid #ff0000;   
+border-right: 14px solid transparent;   
+}      
+	</style>
+</head>
+<body>
+<div id="talkbubble" class="inlayer"> 
+<!--空心三角形,主要是利用伪元素实现-->
+</body>
+</html>
